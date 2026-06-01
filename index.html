@@ -195,7 +195,7 @@
   .mirror {
     padding: 10px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 8px;
   }
 
@@ -417,20 +417,25 @@
     background-color: var(--p5-black);
     color: var(--p5-yellow);
     border: 2px solid var(--p5-red);
-    padding: 6px 26px 6px 10px;
+    padding: 10px 28px 10px 10px;
     font-family: inherit;
     font-style: italic;
     font-weight: 900;
-    font-size: 11px;
-    letter-spacing: 0.12em;
+    font-size: 12px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'><polygon points='0,0 12,0 6,8' fill='%23e60012'/></svg>");
     background-repeat: no-repeat;
     background-position: right 8px center;
     background-size: 10px;
-    flex: 1;
+    width: 100%;
     min-width: 0;
+    max-width: 100%;
     cursor: pointer;
+    box-shadow: 3px 3px 0 var(--p5-red);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   .ref-select option { background: var(--p5-black); color: var(--p5-white); }
   .ref-select:focus { outline: 2px solid var(--p5-yellow); outline-offset: 1px; }
@@ -506,6 +511,9 @@
     transform: rotate(-2deg);
   }
   .dual-bar .btn {
+    flex: 1 1 calc(50% - 8px);
+    min-width: 0;
+    max-width: 100%;
     background: var(--p5-black);
     color: var(--p5-white);
     box-shadow: 3px 3px 0 var(--p5-white);
@@ -737,10 +745,10 @@
         <div class="ref-block">
           <div class="row">
             <button class="btn" id="importRefs"><span>IMPORT REFS</span></button>
-            <select class="ref-select" id="refSelect" hidden>
-              <option value="">— PICK A REF —</option>
-            </select>
           </div>
+          <select class="ref-select" id="refSelect" hidden>
+            <option value="">— PICK A REF —</option>
+          </select>
           <div class="ref-info" id="refInfo">DROP A FOLDER WITH MANIFEST.JSON</div>
         </div>
         <div class="file-name" id="nameA">NO FILE</div>
